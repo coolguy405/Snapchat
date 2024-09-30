@@ -1,24 +1,5 @@
 function setup() {
   createCanvas(windowWidth,windowHeight);
-
-  username = createInput('');
-  password = createInput('');
-  
-  username.position(width/11,height/3.6);
-  password.position(width/11,height/2.6);
-  
-  username.size(width - width/5,height/20);
-  password.size(width - width/5,height/20);
-  
-  username.style('border', '0px solid black');
-  password.style('border', '0px solid black');
-  
-  username.style('background-color', 'transparent');
-  password.style('background-color', 'transparent');
-  
-  username.style('font-size', '22px');
-  password.style('font-size', '22px');
-  
   textFont("Roboto");
 }
 function button(x,y,w,h){
@@ -61,6 +42,25 @@ function draw() {
       page++;
     }
   }else if (page===1){
+    
+    username = createInput('');
+    password = createInput('');
+  
+    username.position(width/11,height/3.6);
+    password.position(width/11,height/2.6);
+  
+    username.size(width - width/5,height/20);
+    password.size(width - width/5,height/20);
+  
+    username.style('border', '0px solid black');
+    password.style('border', '0px solid black');
+  
+    username.style('background-color', 'transparent');
+    password.style('background-color', 'transparent');
+  
+    username.style('font-size', '22px');
+    password.style('font-size', '22px');
+  
     fill(0);
     textAlign(CENTER,CENTER);
     textSize(30);
