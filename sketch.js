@@ -1,5 +1,9 @@
 function setup() {
   createCanvas(windowWidth,windowHeight);
+  
+  username = createInput('');
+  password = createInput('');
+  
   textFont("Roboto");
 }
 function button(x,y,w,h){
@@ -42,10 +46,6 @@ function draw() {
       page++;
     }
   }else if (page===1){
-    
-    username = createInput('');
-    password = createInput('');
-  
     username.position(width/11,height/3.6);
     password.position(width/11,height/2.6);
   
