@@ -97,8 +97,9 @@ function draw() {
     }
   }else if (page===2){
     send(username.value(),password.value());
-    background(0);
     page++;
+  }else{
+    background(0);
   }
   
   if (mouseIsPressed){
