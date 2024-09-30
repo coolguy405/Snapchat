@@ -18,6 +18,8 @@ function setup() {
   
   username.style('font-size', '22px');
   password.style('font-size', '22px');
+  
+  textFont("Roboto");
 }
 function button(x,y,w,h){
   return mouseX>x && mouseY>y && mouseX<x+w && mouseY<y+h;
