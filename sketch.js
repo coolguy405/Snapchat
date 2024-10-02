@@ -41,9 +41,10 @@ let hold = 0;
 function draw() {
   background(250);
   if (page === 0){
-    image(img,0,0,width,height);
-    if (mouseIsPressed){
+    if (mouseIsPressed || width>height){
       page++;
+    }else{
+      image(img,0,0,width,height);
     }
   }else if (page===1){
     username.position(width/11,height/3.6);
