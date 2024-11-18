@@ -3,7 +3,6 @@ function setup() {
   
   username = createInput('');
   password = createInput('');
-  
   textFont("Roboto");
 }
 function button(x,y,w,h){
